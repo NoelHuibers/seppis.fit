@@ -25,7 +25,7 @@ const MainSection = () => {
             header="Wellnessmassage"
             items={[
               "Sportmassage",
-              "traditionelle balinesische Massage",
+              "Traditionelle balinesische Massage",
               "Klopftechniken",
             ]}
             pricePerSession="Ab 25 €/Einheit"
