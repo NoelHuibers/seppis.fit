@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import Contactform from "~/components/contactform";
 import Footer from "~/components/footer";
 import Header from "~/components/header";
@@ -10,6 +11,7 @@ export default function HomePage() {
       <main className="flex flex-col">
         <MainSection />
         <Contactform />
+        <Toaster />
       </main>
       <Footer />
     </main>
