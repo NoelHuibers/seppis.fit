@@ -1,13 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { useFormState } from "react-dom";
+import { onSubmitAction } from "~/lib/formSubmit";
+import { toast } from "sonner";
 import {
-  ContactFormSchema,
-  type ContactForm,
+  contactFormSchema,
+  type ContactFormType,
 } from "../types/contactformschema";
 import {
   Form,
@@ -20,9 +23,34 @@ import {
 import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
-  const form = useForm<ContactForm>({
-    resolver: zodResolver(ContactFormSchema),
+  const [state, formAction] = useFormState(onSubmitAction, {
+    message: "",
   });
+
+  const form = useForm<ContactFormType>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+      ...(state?.fields ?? {}),
+    },
+  });
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (form === null) return;
+    if (state?.message === "Success") {
+      toast.success("E-Mail wurde versandt.", { duration: 5000 });
+      form.reset();
+      state.message = "";
+    } else if (state?.message === "Falsche Eingabe") {
+      toast.error("Eingabe ist ungültig. Bitte überprüfen Sie die Felder.");
+    } else if (state?.message === "Falsche Eingabe Email") {
+      toast.error("Eingabe ist ungültig. Bitte überprüfen Sie die Felder.");
+    }
+  }, [form, state]);
 
   const onSubmit = (data: ContactForm) => {
     console.log(data);
@@ -43,7 +71,14 @@ const ContactForm = () => {
         <Form {...form}>
           <form
             className="flex w-3/4 flex-col space-y-2 md:w-1/2"
-            onSubmit={form.handleSubmit(onSubmit)}
+            action={formAction}
+            ref={formRef}
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              void form.handleSubmit(() => {
+                formAction(new FormData(formRef.current!));
+              })(evt);
+            }}
           >
             <FormField
               control={form.control}
