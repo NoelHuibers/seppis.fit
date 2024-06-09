@@ -1,26 +1,26 @@
+"use client";
+
 import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import {
+  ContactFormSchema,
+  type ContactForm,
+} from "../types/contactformschema";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { Textarea } from "./ui/textarea";
 
-const ContactFormSchema = z.object({
-  name: z.string().min(1, "Name ist erforderlich"),
-  email: z.string().email("Ungültige E-Mail-Adresse"),
-  nachricht: z.string().min(1, "Nachricht ist erforderlich"),
-});
-
-type ContactForm = z.output<typeof ContactFormSchema>;
-
 const ContactForm = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactForm>({
+  const form = useForm<ContactForm>({
     resolver: zodResolver(ContactFormSchema),
   });
 
@@ -40,51 +40,55 @@ const ContactForm = () => {
         </p>
       </div>
       <div className="flex flex-grow items-center justify-center">
-        <form
-          className="flex w-3/4 flex-col space-y-2 md:w-1/2"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="flex flex-col space-y-2">
-            <Label htmlFor="name" className="text-lg">
-              Name
-            </Label>
-            <Controller
+        <Form {...form}>
+          <form
+            className="flex w-3/4 flex-col space-y-2 md:w-1/2"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
+            <FormField
+              control={form.control}
               name="name"
-              control={control}
-              render={({ field }) => <Input {...field} type="text" required />}
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
-            )}
-          </div>
-          <div className="flex flex-col space-y-2">
-            <Label htmlFor="email" className="text-lg">
-              Email
-            </Label>
-            <Controller
+
+            <FormField
+              control={form.control}
               name="email"
-              control={control}
-              render={({ field }) => <Input {...field} type="email" required />}
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>E-Mail</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
-          </div>
-          <div className="flex flex-col space-y-2">
-            <Label htmlFor="nachricht" className="text-lg">
-              Nachricht
-            </Label>
-            <Controller
-              name="nachricht"
-              control={control}
-              render={({ field }) => <Textarea {...field} rows={6} required />}
+
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Nachricht</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} rows={6} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            {errors.nachricht && (
-              <p className="text-red-500">{errors.nachricht.message}</p>
-            )}
-          </div>
-          <Button type="submit">Submit</Button>
-        </form>
+            <Button type="submit">Submit</Button>
+          </form>
+        </Form>
       </div>
     </section>
   );
