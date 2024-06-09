@@ -52,7 +52,7 @@ const ContactForm = () => {
     }
   }, [form, state]);
 
-  const onSubmit = (data: ContactForm) => {
+  const onSubmit = (data: ContactFormType) => {
     console.log(data);
   };
 
@@ -116,6 +116,20 @@ const ContactForm = () => {
                   <FormLabel>Nachricht</FormLabel>
                   <FormControl>
                     <Textarea {...field} rows={6} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="honeypot"
+              render={({ field }) => (
+                <FormItem className="hidden">
+                  <FormLabel>Honeypot</FormLabel>
+                  <FormControl>
+                    <Input type="text" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
