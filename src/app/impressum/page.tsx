@@ -6,14 +6,22 @@ export default function HomePage() {
       <div className="grid max-w-2xl gap-8 px-4 text-center md:px-6">
         <div className="space-y-2">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-            Seppis
+            Seppis Fit@Home
           </h2>
-          <p className="text-gray-500 dark:text-gray-400">Straße, Hausnummer</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            Römerweg 9, 32760 Detmold, Deutschland
+          </p>
           <p className="text-gray-500 dark:text-gray-400">
             Telefon: +49 151 65474766
           </p>
           <p className="text-gray-500 dark:text-gray-400">
             Email: seppmann.s@web.de
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            Rechtsform: Einzelunternehmen
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            Vertretungsberechtigt: Sascha Seppmann
           </p>
         </div>
         <div className="flex justify-center space-x-4">
