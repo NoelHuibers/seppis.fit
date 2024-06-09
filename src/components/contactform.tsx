@@ -5,12 +5,12 @@ import { Textarea } from "./ui/textarea";
 
 const Contactform = () => {
   return (
-    <section className="flex min-h-screen flex-col bg-slate-50 py-6 dark:bg-gray-800 md:py-8">
+    <section className="flex h-full flex-col bg-slate-50 py-6 dark:bg-gray-800 md:h-screen md:py-8">
       <div className="px-4 md:px-12">
-        <h2 className="pb-6 text-2xl font-bold md:text-4xl">
+        <h2 className="pb-2 text-2xl font-bold md:pb-6 md:text-4xl">
           Kontaktieren Sie mich
         </h2>
-        <p className="pb-10 text-gray-500 dark:text-gray-400">
+        <p className="pb-4 text-gray-500 dark:text-gray-400 md:pb-10">
           Haben Sie eine Frage oder möchten Sie einen Termin buchen? Füllen Sie
           das Formular unten aus.
         </p>
