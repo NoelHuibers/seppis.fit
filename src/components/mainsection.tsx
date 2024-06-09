@@ -9,7 +9,7 @@ const MainSection = () => {
         </h1>
         <p className="pb-10 text-center text-gray-500 dark:text-gray-400">
           Entfalten Sie Ihr volles Potenzial mit Sascha Seppmann als ihren
-          Personaltrainer und Deinstleister.
+          Personaltrainer.
         </p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           <TrainingCard
