@@ -135,7 +135,7 @@ const ContactForm = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Senden</Button>
           </form>
         </Form>
       </div>

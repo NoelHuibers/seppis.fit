@@ -31,7 +31,7 @@ const MainSection = () => {
             pricePerSession="Ab 25 €/Einheit"
           />
           <TrainingCard
-            header="Knochenbrecher für Tiere"
+            header="Chiropraktiker für Tiere"
             items={[
               "Mobilisierung der Gelenke",
               "für Hunde, Katzen",
@@ -41,7 +41,7 @@ const MainSection = () => {
           />
           <TrainingCard
             header="Gruppentraining"
-            items={["Aquagym", "Crosstraining", "Gruppentraining"]}
+            items={["Aquagym", "oder", "Gruppentraining"]}
             pricePerSession="Ab 7,50 €/Person"
           />
         </div>
