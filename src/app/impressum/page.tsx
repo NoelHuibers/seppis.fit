@@ -12,7 +12,7 @@ export default function HomePage() {
             Römerweg 9, 32760 Detmold, Deutschland
           </p>
           <p className="text-gray-500 dark:text-gray-400">
-            Telefon: +49 151 65474766
+            Telefon: +49 176 55377034
           </p>
           <p className="text-gray-500 dark:text-gray-400">
             Email: seppmann.s@web.de

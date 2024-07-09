@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="mb-4 text-gray-500 dark:text-gray-400 md:mb-0">
           <div className="flex flex-row space-x-2">
             <p>Telefon:</p>
-            <a className="hover:underline" href="tel:+4915165474766">
-              +49 151 65474766
+            <a className="hover:underline" href="tel:+4917655377034">
+              +49 176 55377034
             </a>
           </div>
           <div className="flex flex-row space-x-2">
