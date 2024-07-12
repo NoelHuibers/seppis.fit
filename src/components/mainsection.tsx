@@ -25,7 +25,7 @@ const MainSection = () => {
             header="Wellnessmassage"
             items={[
               "Sportmassage",
-              "Traditionelle balinesische Massage",
+              "Traditionelle budistische Massage",
               "Klopftechniken",
             ]}
             pricePerSession="Ab 25 €/Einheit"
@@ -34,8 +34,8 @@ const MainSection = () => {
             header="Chiropraktiker für Tiere"
             items={[
               "Mobilisierung der Gelenke",
-              "für Hunde, Katzen",
-              "und sogar Pferde!",
+              "für Hunde, Katzen, Pferde",
+              "und natürlich Mensch!",
             ]}
             pricePerSession="Ab 25 €"
           />
