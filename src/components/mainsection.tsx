@@ -31,7 +31,7 @@ const MainSection = () => {
             pricePerSession="Ab 25 €/Einheit"
           />
           <TrainingCard
-            header="Chiropraktiker für Tiere"
+            header="Chiropraktiker"
             items={[
               "Mobilisierung der Gelenke",
               "für Hunde, Katzen, Pferde",
