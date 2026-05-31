@@ -1,6 +1,6 @@
-import { LiaDumbbellSolid } from "react-icons/lia";
-import { IoIosMail } from "react-icons/io";
 import Link from "next/link";
+import { IoIosMail } from "react-icons/io";
+import { LiaDumbbellSolid } from "react-icons/lia";
 
 const Header = () => {
   return (

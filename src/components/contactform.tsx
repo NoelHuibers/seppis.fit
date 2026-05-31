@@ -1,17 +1,15 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { useFormState } from "react-dom";
-import { onSubmitAction } from "~/lib/formSubmit";
+import { useActionState, useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { onSubmitAction } from "~/lib/formSubmit";
 import {
-  contactFormSchema,
   type ContactFormType,
+  contactFormSchema,
 } from "../types/contactformschema";
+import { Button } from "./ui/button";
 import {
   Form,
   FormControl,
@@ -20,10 +18,11 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
+import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
-  const [state, formAction] = useFormState(onSubmitAction, {
+  const [state, formAction] = useActionState(onSubmitAction, {
     message: "",
   });
 
@@ -38,23 +37,23 @@ const ContactForm = () => {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
+  const handledMessage = useRef<string | null>(null);
 
   useEffect(() => {
-    if (form === null) return;
-    if (state?.message === "Success") {
+    const message = state?.message;
+    if (!message || handledMessage.current === message) return;
+    handledMessage.current = message;
+
+    if (message === "Success") {
       toast.success("E-Mail wurde versandt.", { duration: 5000 });
       form.reset();
-      state.message = "";
-    } else if (state?.message === "Falsche Eingabe") {
-      toast.error("Eingabe ist ungültig. Bitte überprüfen Sie die Felder.");
-    } else if (state?.message === "Falsche Eingabe Email") {
+    } else if (
+      message === "Falsche Eingabe" ||
+      message === "Falsche Eingabe Email"
+    ) {
       toast.error("Eingabe ist ungültig. Bitte überprüfen Sie die Felder.");
     }
   }, [form, state]);
-
-  const onSubmit = (data: ContactFormType) => {
-    console.log(data);
-  };
 
   return (
     <section className="flex h-full flex-col bg-slate-50 py-6 dark:bg-gray-800 md:h-screen md:py-8">
@@ -75,8 +74,10 @@ const ContactForm = () => {
             ref={formRef}
             onSubmit={(evt) => {
               evt.preventDefault();
+              const node = formRef.current;
+              if (!node) return;
               void form.handleSubmit(() => {
-                formAction(new FormData(formRef.current!));
+                formAction(new FormData(node));
               })(evt);
             }}
           >
